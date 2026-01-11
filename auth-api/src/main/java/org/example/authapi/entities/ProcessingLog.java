@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(name = "logs")
 public class ProcessingLog {
 
     @Id
@@ -33,14 +34,6 @@ public class ProcessingLog {
         this.inputText = inputText;
         this.transformedText = transformedText;
         this.timestamp = new Date(new java.util.Date().getTime());
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setId(Long id) {

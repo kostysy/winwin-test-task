@@ -3,6 +3,7 @@ package org.example.authapi.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
     public User() {}
 
@@ -22,7 +23,11 @@ public class User {
             allocationSize = 1
     )
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
     public void setId(Long id) {
@@ -37,15 +42,8 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -4,12 +4,10 @@ import org.example.dataapi.services.HeaderValidationService;
 import org.example.dataapi.services.TransformService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/api")
+@RestController()
+@RequestMapping("/api")
 public class DataApiController {
     private final HeaderValidationService validationService;
     private final TransformService transformService;

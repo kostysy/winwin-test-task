@@ -8,14 +8,12 @@ import org.example.authapi.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
 public class AuthApiController {
     private final JwtService jwtService;
     private final UserService userService;
@@ -34,20 +32,23 @@ public class AuthApiController {
         User user = userService.getUserByEmail(request.email());
 
         if (!user.getEmail().equals(request.email()) ||
-                passwordEncoder.matches(request.email(), user.getEmail())) {
-            throw new RuntimeException("Invalid credentials");
+                !passwordEncoder.matches(request.password(), user.getPassword())) {
+            return ResponseEntity.status(401)
+                    .body("Invalid credentials");
         }
 
-        String token = jwtService.generateToken(request.email());
+        String token = jwtService.generateToken(user.getEmail());
         return ResponseEntity.ok(token);
     }
 
     @PostMapping("/auth/register")
     public ResponseEntity<String> register(@RequestBody LoginRequest request) {
         if (userService.isUserExist(request.email())) {
-            throw new RuntimeException("User already exists");
+            return ResponseEntity.status(409)
+                    .body("User already exists");
         } else if (request.email().isBlank() || request.password().isBlank()) {
-            throw new RuntimeException("Email or password can't be blank");
+            return ResponseEntity.status(400)
+                    .body("Email or password can't be blank");
         }
 
         userService.createUser(new User(request.email(), passwordEncoder.encode(request.password())));
@@ -56,7 +57,7 @@ public class AuthApiController {
     }
 
     @PostMapping("/process")
-    public ResponseEntity<String> transform(@AuthenticationPrincipal String email, @RequestParam String text) {
+        public ResponseEntity<String> transform(@AuthenticationPrincipal String email, @RequestParam String text) {
         if (Objects.isNull(email) || email.isBlank()) {
             throw new RuntimeException("Invalid credentials");
         }

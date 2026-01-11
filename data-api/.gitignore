@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Idea-specific files
+.idea/
+out/

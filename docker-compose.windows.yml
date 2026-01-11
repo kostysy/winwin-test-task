@@ -1,0 +1,8 @@
+services:
+  auth-api:
+    environment:
+      DATA_API_URL: http://data-api:8081
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      INTERNAL_TOKEN: secret-win-win-token
