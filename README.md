@@ -76,5 +76,5 @@ Returns with `200` status code if login is success-full and returns JWT Token
 
 ### Process
 ```bash
-curl -i -X POST "http://localhost:8080/api/process?text=<Your Test String>" -H "Authorization: Bearer <Your JWT Token>"
+curl -i -X POST "http://localhost:8080/api/process?text=Your_Test_String" -H "Authorization: Bearer <Your JWT Token>"
 ```
