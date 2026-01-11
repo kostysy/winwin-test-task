@@ -5,7 +5,7 @@ import org.example.authapi.repositories.ProcessingLogRepository;
 import org.example.authapi.services.ProcessingLogService;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "processingLogService")
 public class ProcessingLogServiceImpl implements ProcessingLogService {
     private final ProcessingLogRepository logRepository;
 

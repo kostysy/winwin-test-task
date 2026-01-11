@@ -62,22 +62,19 @@ for Windows and Linux.
 
 ### Register
 ```bash
-curl -i -X POST http://localhost:8080/api/auth/register -H "Content-Type: application/json"  
--d '{"email": "your@email.com", "password": "yourPassword123"}'
+curl -i -X POST http://localhost:8080/api/auth/register -H "Content-Type: application/json" -d '{"email": "your@email.com", "password": "yourPassword123"}'
 ```
 
 Returns with `201` status code if registration is success-full.
 
 ### Login
 ```bash
-curl -i -X POST http://localhost:8080/api/auth/login -H "Content-Type: application/json"  
--d '{"email": "your@email.com", "password": "yourPassword123"}'
+curl -i -X POST http://localhost:8080/api/auth/login -H "Content-Type: application/json" -d '{"email": "your@email.com", "password": "yourPassword123"}'
 ```
 
 Returns with `200` status code if login is success-full and returns JWT Token
 
 ### Process
 ```bash
-curl -i -X POST "http://localhost:8080/api/process?text=<Your Test String>"   
--H "Authorization: Bearer <Your JWT Token>"
+curl -i -X POST "http://localhost:8080/api/process?text=<Your Test String>" -H "Authorization: Bearer <Your JWT Token>"
 ```
