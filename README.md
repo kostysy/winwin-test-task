@@ -38,7 +38,7 @@ authorization between services.
 
 ---
 
-## 🐳 Running the Services
+## Running the Services
 
 ### Features
 - Builds both services with one `docker compose` command. 
