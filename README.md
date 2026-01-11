@@ -40,6 +40,13 @@ authorization between services.
 
 ## 🐳 Running the Services
 
+### Features
+- Builds both services with one `docker compose` command. 
+- Downloads Maven dependencies only once when it's needed.
+- Uses health check on `postgres` service before starting dependant service.
+- Allows for easy changing of environment variables via `docker compose` command or 
+modification of `docker-compose.yml` file.
+
 ### Linux
 
 ```bash
